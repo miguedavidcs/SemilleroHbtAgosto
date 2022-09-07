@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { CrearPersonaComponent } from './semillero/componentes/crear-persona/crear-persona.component';
 import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component';
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
 
@@ -15,6 +16,7 @@ import { MenuComponent } from './semillero/componentes/menu/menu-component';
     AppComponent,
     MenuComponent,
     BienvenidaComponent,
+    CrearPersonaComponent,
 
   ],
   imports: [
