@@ -207,8 +207,8 @@ export class CrearPersonaComponent implements OnInit {
 
   }
   public eliminar(){
-    this.nuevoComic.splice(3,1);
     let eliminado = this.nuevoComic[3];
+    this.nuevoComic.splice(3,1);
     this.mensaje = 'Se ha eliminado el comic ' + eliminado.nombre + '  Informacion completa: ' + JSON.stringify(eliminado);
   }
 

@@ -14,7 +14,7 @@
 
 <img [src]="imagen.url" name="urlImagen" [height]="imagen.heigth" [width]="imagen.width" (click)="mostrarDescripcionImagen()">-->
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm">
             <button (click)="eliminar($event)" class="btn btn-outline-dark">Eliminar</button><br />
@@ -23,13 +23,7 @@
             </div>
             <br />
         </div>
-        <div class="col">
-            <label>Comic </label>
-            <div class="alert alert-secondary" role="alert">
-                {{ mostrar }}
-            </div>
-        </div>
-        <div class="col">
+         <div class="col">
             <label>Comic eliminado </label>
             <div class="alert alert-dark" role="alert">
                 {{ mensaje }}
@@ -54,7 +48,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let nuevo of nuevoComic; let i = index; ">
+        <tr *ngFor="let nuevo of nuevoComic; let id = index; ">
+            <td>{{id+1}}</td>
             <td>{{ nuevo.id }}</td>
             <td>{{ nuevo.nombre }}</td>
             <td>{{ nuevo.editorial }}</td>
