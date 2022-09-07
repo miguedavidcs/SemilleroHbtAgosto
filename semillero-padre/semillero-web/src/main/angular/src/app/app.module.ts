@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CrearPersonaComponent } from './semillero/componentes/crear-persona/crear-persona.component';
 import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component';
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
+import { GestionarComicComponent } from './semillero/componentes/gestionar-comic/gestionar-comic.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MenuComponent } from './semillero/componentes/menu/menu-component';
     MenuComponent,
     BienvenidaComponent,
     CrearPersonaComponent,
+    GestionarComicComponent,
 
   ],
   imports: [
