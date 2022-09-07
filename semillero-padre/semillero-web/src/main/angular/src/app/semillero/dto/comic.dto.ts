@@ -27,12 +27,12 @@ export class ComicDTO {
 	
 	public cantidad : number;
 
-    constructor(nombre : string, tematicaEnum : TematicaEnum, precio : number) {
+    /*constructor(nombre : string, tematicaEnum : TematicaEnum, precio : number);
         this.nombre = nombre;
         this.tematicaEnum = tematicaEnum;
         this.precio = precio;
-    }
-    /*constructor(id : number,nombre : string,editorial : string, tematicaEnum : TematicaEnum,coleccion : string,numeroPaginas : number, 
+    }*/
+    constructor(id : number,nombre : string,editorial : string, tematicaEnum : TematicaEnum,coleccion : string,numeroPaginas : number, 
         precio : number,autores : string,color : boolean,fechaVenta : Date,estadoEnum : EstadoEnum,cantidad : number) {
         this.id = id;
         this.nombre = nombre;
@@ -45,5 +45,6 @@ export class ComicDTO {
         this.color= color;
         this.fechaVenta = fechaVenta;
         this.estadoEnum = estadoEnum;
-        this.cantidad =*/ 
+        this.cantidad = cantidad;
+    }
 }

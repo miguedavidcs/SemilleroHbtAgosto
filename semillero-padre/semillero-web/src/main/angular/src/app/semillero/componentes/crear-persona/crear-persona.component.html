@@ -1,7 +1,9 @@
 <p>crear-persona works!</p>
 
+
 <h1>{{ saludo }}</h1>
 
+<!--
 <p>{{ comics | json }}</p>
 
 <p>{{ imagen | json }}</p>
@@ -10,4 +12,60 @@
 <input id="pathImagen" type="text" class="form-control-plaintext" [(ngModel)]="imagen.url">
 
 
-<img [src]="imagen.url" name="urlImagen" [height]="imagen.heigth" [width]="imagen.width" (click)="mostrarDescripcionImagen()">
+<img [src]="imagen.url" name="urlImagen" [height]="imagen.heigth" [width]="imagen.width" (click)="mostrarDescripcionImagen()">-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <button (click)="eliminar($event)" class="btn btn-outline-dark">Eliminar</button><br />
+            <div class="alert alert-primary" *ngIf="validacion">
+                {{mensaje}}
+            </div>
+            <br />
+        </div>
+        <div class="col">
+            <label>Comic </label>
+            <div class="alert alert-secondary" role="alert">
+                {{ mostrar }}
+            </div>
+        </div>
+        <div class="col">
+            <label>Comic eliminado </label>
+            <div class="alert alert-dark" role="alert">
+                {{ mensaje }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>nombre</th>
+            <th>editorial</th>
+            <th>tematica</th>
+            <th>numeroPaginas</th>
+            <th>precio</th>
+            <th>autores</th>
+            <th>aColor</th>
+            <th>fechaVenta</th>
+            <th>estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let nuevo of nuevoComic; let i = index; ">
+            <td>{{ nuevo.id }}</td>
+            <td>{{ nuevo.nombre }}</td>
+            <td>{{ nuevo.editorial }}</td>
+            <td>{{ nuevo.tematica }}</td>
+            <td>{{ nuevo.numeroPaginas }}</td>
+            <td>{{ nuevo.precio }}</td>
+            <td>{{ nuevo.autores }}</td>
+            <td>{{ nuevo.aColor }}</td>
+            <td>{{ nuevo.fechaVenta }}</td>
+            <td>{{ nuevo.estado }}</td>
+        </tr>
+    </tbody>
+</table>
+
