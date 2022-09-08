@@ -11,6 +11,13 @@ import { CrearPersonaComponent } from './semillero/componentes/crear-persona/cre
 import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component';
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
 import { GestionarComicComponent } from './semillero/componentes/gestionar-comic/gestionar-comic.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -19,6 +26,8 @@ import { GestionarComicComponent } from './semillero/componentes/gestionar-comic
     BienvenidaComponent,
     CrearPersonaComponent,
     GestionarComicComponent,
+    TestComponent,
+    GestionarComicComponent
 
   ],
   imports: [
@@ -27,7 +36,14 @@ import { GestionarComicComponent } from './semillero/componentes/gestionar-comic
     HttpModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    })
   ],
   providers: [
   	{ provide: APP_BASE_HREF, useValue: '/SemilleroHBT' }

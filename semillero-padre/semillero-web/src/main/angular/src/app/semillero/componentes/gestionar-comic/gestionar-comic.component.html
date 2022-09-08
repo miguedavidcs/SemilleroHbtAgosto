@@ -2,7 +2,75 @@
 <div class="container">
     <form>
         <h1>Gestionar Comic</h1>
-        <br>
-        
+        <hr>
+        <br>        
+        <div class="row">
+            <div class="col">
+              <input id="nombreComic" name="nombreComic" type="text" class="form-control" placeholder="Digitar Nombre del Comic por favor." aria-label required>
+            </div>
+            <div class="col">
+              <input id="editorialComic" name="editorialComic" type="text" class="form-control" placeholder="Digitar Nombre del Editorial por favor." aria-label required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <select id="tematica" name="tematica" class="form-select" size="8" aria-label>
+                    <option selected>Despliega hacia abajo por favor</option>
+                    <option value="AVENTURAS">AVENTURAS</option>
+                    <option value="BELICO">BELICO</option>
+                    <option value="DEPORTIVO">DEPORTIVO</option>
+                    <option value="FANTASTICO">FANTASTICO</option>
+                    <option value="CIENCIA_FICCION">CIENCIA FICCION</option>
+                    <option value="HISTORICO">HISTORICO</option>
+                    <option value="HORROR">HORROR</option>
+                  </select>
+            </div>
+            <div class="col">
+                <input id="coleccion" name="coleccion" type="text" class="form-control" placeholder="Digitar Nombre de la coleccion por favor." aria-label required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              <input id="precio" name="precio" type="number" step=".01" min="0" max="100000000" class="form-control" placeholder="Digitar Precio del Comic por Favor." aria-label required>
+            </div>
+            <div class="col">
+              <input id="autor"name="autor" type="text" class="form-control" placeholder="Digitar Nombre del Autor por favor." aria-label required>
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Si</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-success">Crear</button>
+                <button type="button" class="btn btn-danger">Emilinar Anterior</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                </table>
+            </div>
+        </div>
+
     </form>
 </div>

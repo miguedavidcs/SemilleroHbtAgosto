@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-gestionar-comic',
+  selector: 'gestionar-comic',
   templateUrl: './gestionar-comic.component.html',
   styleUrls: ['./gestionar-comic.component.css']
 })
