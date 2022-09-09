@@ -85,26 +85,41 @@ import com.hbt.semillero.enums.EstadoEnum;
 				queryEliminar.setParameter("idComic", 3L);
 				queryEliminar.executeUpdate();
 				
-				String eliminarComics = " DELETE FROM Comic WHERE id = :idComic";
-				Query queryEliminare = em.createQuery(eliminarComics);
-				queryEliminar.setParameter("idComic", 3L);
-				queryEliminare.executeUpdate();
 				
 				List<Long> idsComics = new ArrayList<>();
-				idsComics.add(3L);
-				idsComics.add(2L);
-				idsComics.add(5L);
-				idsComics.add(7L);
+				idsComics.add(8L);
+				idsComics.add(11L);
+				
 				String actualizarComicVarios = "UPDATE Comic c SET c.estadoEnum = :estado WHERE c.id IN (:listIdComics)";
 				Query queryActualizarVarios = em.createQuery(actualizarComicVarios);
 				queryActualizarVarios.setParameter("estado", EstadoEnum.ACTIVO);
 				queryActualizarVarios.setParameter("listIdComics", idsComics);
 				queryActualizarVarios.executeUpdate();
+				List<Long> idsComicx = new ArrayList<>();
+				idsComicx.add(11L);
+				idsComicx.add(4L);
+				idsComicx.add(5L);
+				idsComicx.add(6L);
+				idsComicx.add(8L);
+				idsComicx.add(9L);
+				idsComicx.add(10L);
+				String actualizarComicVariod = "UPDATE Comic c SET c.nombre = :nombre WHERE c.id IN (:listIdComics)";
+				Query queryActualizarVario = em.createQuery(actualizarComicVariod);
+				queryActualizarVario.setParameter("nombre", "La misma pelicula");
+				queryActualizarVario.setParameter("listIdComics", idsComicx);
+				queryActualizarVario.executeUpdate();
 				
-				String eliminarComicVarios = " DELETE FROM Comic WHERE id = :idComic";
-				Query queryEliminarVarios = em.createQuery(eliminarComicVarios);
-				queryEliminarVarios.setParameter("idComic", 7L);
-				queryEliminarVarios.executeUpdate();
+				
+				String actualizarautotes = "UPDATE Comic c SET c.autores = :autor WHERE c.id IN (:listIdComics)";
+				Query queryactualizarautores = em.createQuery(actualizarautotes);
+				queryactualizarautores.setParameter("autor", "Actualizar todos Autores por lista");
+				queryactualizarautores.setParameter("listIdComics", idsComicx);
+				queryactualizarautores.executeUpdate();
+				
+				//String eliminarComicVarios = " DELETE FROM Comic WHERE id = :idComic";
+				//Query queryEliminarVarios = em.createQuery(eliminarComicVarios);
+				//queryEliminarVarios.setParameter("idComic", 7L);
+				//queryEliminarVarios.executeUpdate();
 				
 //				
 			} catch (NonUniqueResultException nur) {

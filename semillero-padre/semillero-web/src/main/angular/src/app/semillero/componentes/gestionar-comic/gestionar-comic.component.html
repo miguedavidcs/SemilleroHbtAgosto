@@ -1,20 +1,20 @@
-<p>gestionar-comic works!</p>
+
 <div class="container">
     <form>
         <h1>Gestionar Comic</h1>
         <hr>
         <br>        
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-start">
+            <div class="col-6">
               <input id="nombreComic" name="nombreComic" type="text" class="form-control" placeholder="Digitar Nombre del Comic por favor." aria-label required>
             </div>
-            <div class="col">
+            <div class="col-6">
               <input id="editorialComic" name="editorialComic" type="text" class="form-control" placeholder="Digitar Nombre del Editorial por favor." aria-label required>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <select id="tematica" name="tematica" class="form-select" size="8" aria-label>
+        <div class="row justify-content-start">
+            <div class="col-6">
+                <select id="tematica" name="tematica" class="form-select" size="3" aria-label>
                     <option selected>Despliega hacia abajo por favor</option>
                     <option value="AVENTURAS">AVENTURAS</option>
                     <option value="BELICO">BELICO</option>
@@ -25,11 +25,11 @@
                     <option value="HORROR">HORROR</option>
                   </select>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <input id="coleccion" name="coleccion" type="text" class="form-control" placeholder="Digitar Nombre de la coleccion por favor." aria-label required>
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-start">
             <div class="col">
               <input id="precio" name="precio" type="number" step=".01" min="0" max="100000000" class="form-control" placeholder="Digitar Precio del Comic por Favor." aria-label required>
             </div>
@@ -47,30 +47,56 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-start">
+            <div class="col-12">
               
             </div>
-            <div class="col">
+            <div class="col-12">
                 <button type="button" class="btn btn-success">Crear</button>
                 <button type="button" class="btn btn-danger">Emilinar Anterior</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row ">
             <div class="col-12">
                 <table class="table">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                                <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tematica</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">A color</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--date:"MM/dd/yy"
+                        | uppercase-->
+                        <tr *ngFor="let comic of listaComics;let i=index;">
+                            <th scope="row">{{i}}</th>
+                            <td>{{comic.nombre | uppercase }}</td>
+                            <td>{{comic.tematicaEnum | lowercase }}</td>
+                            <td>{{comic.precio | number: '.2'}}</td>
+                            <td>{{comic.color ? 'Si' : 'No' }}</td>
+                            <td>{{comic.fechaVenta | date: "MM-dd-yy" }}</td> 
+                            <td>
+                                <i class="fas fa-search 2x ml-1" title="Consultar" (click)="imprimirDataComic(i)"></i>
+                                <i class="fas fa-pencil-alt 2x ml-1"  title="Editar"></i>
+                                <i class="far fa-times-circle 2x ml-1" title="Eliminar"></i>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
+        <div *ngIf="mostrarItem" class="alert alert-info" role="alert">
+            Se ha creado exitosamente el comic
+            <button type="button" class="btn btn-primary" (click)="cerrar()">Cerrar</button>      
+        </div>
 
+        <div *ngIf="mostrarData" class="alert alert-info" role="alert">
+            ITEM SELECCIONADO: <pre>{{ comicDTOData | json }}</pre> 
+            <button type="button" class="btn btn-primary" (click)="cerrar()">Cerrar</button>      
+        </div>
     </form>
 </div>

@@ -17,7 +17,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm">
-            <button (click)="eliminar($event)" class="btn btn-outline-dark">Eliminar</button><br />
+            <!-- tengo un problema raro <button (click) = "eliminar($event)" class="btn btn-danger">Eliminar</button>-->
+             <br/>
             <div class="alert alert-primary" *ngIf="validacion">
                 {{mensaje}}
             </div>

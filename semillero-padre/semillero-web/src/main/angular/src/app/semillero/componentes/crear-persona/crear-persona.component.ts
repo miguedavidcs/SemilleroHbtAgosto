@@ -201,14 +201,14 @@ export class CrearPersonaComponent implements OnInit {
       'autores': 'extranjeros',
       'aColor': 'true',
       'fechaVenta': '2022-10-17',
-      'estado': 'ACTIVO',
+      'estado': 'ACTIVO'
     };
     this.nuevoComic.push(comiccreado);
-
   }
-  public eliminar(){
+  public  eliminar(){
     let eliminado = this.nuevoComic[3];
     this.nuevoComic.splice(3,1);
+    
     this.mensaje = 'Se ha eliminado el comic ' + eliminado.nombre + '  Informacion completa: ' + JSON.stringify(eliminado);
   }
 
