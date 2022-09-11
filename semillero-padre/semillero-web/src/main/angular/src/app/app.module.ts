@@ -12,6 +12,7 @@ import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-com
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
 import { GestionarComicComponent } from './semillero/componentes/gestionar-comic/gestionar-comic.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { GestionarComicComponent } from './semillero/componentes/gestionar-comic
     BienvenidaComponent,
     CrearPersonaComponent,
     GestionarComicComponent,
-
+    
   ],
   imports: [
     BrowserModule,

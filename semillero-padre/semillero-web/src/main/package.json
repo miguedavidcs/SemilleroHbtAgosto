@@ -2,6 +2,7 @@
   "dependencies": {
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "i18n-iso-countries": "^7.5.0",
     "tslib": "^2.4.0"
   }
 }
