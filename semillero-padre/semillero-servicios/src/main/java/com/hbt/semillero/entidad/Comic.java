@@ -18,9 +18,9 @@ import com.hbt.semillero.enums.EstadoEnum;
 import com.hbt.semillero.enums.TematicaEnum;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * <b>Descripción:<b> Clase que determina la entidad comic
@@ -33,7 +33,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@ToString
 public class Comic implements Serializable {
 
 	/**
@@ -50,7 +50,7 @@ public class Comic implements Serializable {
 	private Long id; // Atributo que determina el id de un comic
 	@Column(name = "SCNOMBRE")
 	private String nombre; // Atributo que determina el nombre de un comic
-	@Column(name = "SCCOLECCION")
+	@Column(name = "SCEDITORIAL")
 	private String editorial; // Atributo que determina la editorial de un comic
 	@Column(name = "SCTEMATICA")
 	@Enumerated(value = EnumType.STRING)
