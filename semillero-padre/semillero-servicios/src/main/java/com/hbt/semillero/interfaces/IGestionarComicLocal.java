@@ -43,13 +43,7 @@ public interface IGestionarComicLocal {
 		 * @return
 		 */
 		public ComicDTO actualizarComic(ComicDTO comicDTO);
-		/**
-		 * @author Miguel Castaño
-	     * @Caso_de_Uso:Metodo para Mostrar
-		 * @param Buscador
-		 * @return
-		 */
-		public List<ComicDTO> listarComics(String Buscador);
+		
 		/**
 		 * @author Miguel Castaño
 	     * @Caso_de_Uso:Metodo para Consultar Lista de Comic por parametro id del comic
@@ -88,7 +82,14 @@ public interface IGestionarComicLocal {
 		 * @return
 		 */
 		public ResultadoDTO existeComicConResult(Long idComic);
-	
+		/**
+		 * @author Diego Alvarez Editado Usuario Miguel Castaño
+	     * @Caso_de_Uso:Metodo para Obtener Comic
+		 * 
+		 * @return
+		 */
+		
+		public List<ComicDTO> obtenerComics();
 	
 	
 		

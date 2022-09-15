@@ -1,207 +1,190 @@
-<div class="container">
-    <form [formGroup]="gestionarComicForm">
-       <hr>
-        <br>
-        <pre>{{ comicDTO | json }}</pre>
-
-        <div class="row">
-            <div class="col-6">
-                <label for="nombre" >Nombre</label>
-                <input id="nombre" type="text" class="form-control" maxlength="50"
-                     formControlName="nombre" [ngClass]="{ 'is-invalid' : validoFormulario && f.nombre.errors }">
-                <div *ngIf=" validoFormulario && f.nombre.errors">
-                    <span class="text-danger" *ngIf="f.nombre.error.required">Campo requerido</span>
-                    <!--<span class="text-danger" *ngIf="f.nombre.error.maxlength">Solo se permite 50 caracteres</span>-->
-                </div>
-            </div>
-
-            <div class="col-6">
-                <label for="editorial" >Editorial</label>
-                <input id="editorial" type="text" class="form-control" maxlength="50"
-                formControlName="editorial" [ngClass]="{ 'is-invalid' : validoFormulario && f.editorial.errors }">
-                <div *ngIf=" validoFormulario && f.editorial.errors">
-                    <span class="text-danger" *ngIf="f.editorial.error.required">Campo requerido</span>
-                </div>
-            </div>
+<div class="container-fluid">
+     <form [formGroup]="gestionarComicForm">
+        <div class="modal-footer">
+            <button type="button" class="border-0 btn btn-dark lh-lg px-5 rounded-pill shadow w-auto"
+                (click)="guardarComic()"data-content="Seguro de querer Guardar"><span class="text-white">Guardar</span></button>
         </div>
-
         <div class="row">
-            <div class="col-6">
+            <div class="col-8">
+                <label class="mb-0 mt-3 form-label" for="nombreComic">Nombre:</label>
+                <input type="text" class="form-control" id="nombreComic" formControlName="nombre"
+                    [ngClass]="{ 'is-invalid' : submitted && f.nombre.errors }">
+                <div *ngIf="submitted && f.nombre.errors">
+                    <span class="text-info" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.nombre.errors.maxlength">El campo solo recibe 50
+                        caracteres.</span>
+                </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
-                    <label for="tematicaEnum">Tematica:</label>
-                    <select class="form-control" id="tematicaEnum" formControlName="tematicaEnum">
-                        <option value="AVENTURAS">Aventuras</option>
-                        <option value="BELICO">Belico</option>
-                        <option value="DEPORTIVO">Deportivo</option>
-                        <option value="FANTASTICO">Fantastico</option>
-                        <option value="CIENCIA_FICCION">Ciencia ficcion</option>
-                        <option value="HISTORICO">Historico</option>
-                        <option value="HORROR">Horror</option>
+                    <label class="mb-0 mt-3" for="tematica">Temática:</label>
+                    <select class="form-control" id="tematica" formControlName="tematicaEnum"
+                        [ngClass]="{ 'is-invalid' : submitted && f.tematicaEnum.errors }">
+                        <option value="AVENTURAS">AVENTURAS</option>
+                        <option value="BELICO">BELICO</option>
+                        <option value="DEPORTIVO">DEPORTIVO</option>
+                        <option value="FANTASTICO">FANTASTICO</option>
+                        <option value="CIENCIA_FICCION">CIENCIA FICCION</option>
+                        <option value="HISTORICO">HISTORICO</option>
+                        <option value="HORROR">HORROR</option>
                     </select>
+                    <div *ngIf="submitted && f.tematicaEnum.errors">
+                        <span class="text-info" *ngIf="f.tematicaEnum.errors.required">Campo requerido.</span>
+                    </div>
                 </div>
-
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-6">
-                <label for="coleccion">Coleccion:</label>
-                <input id="coleccion" type="text" class="form-control" maxlength="50"
-                formControlName="coleccion" [ngClass]="{ 'is-invalid' : validoFormulario && f.coleccion.errors }">
-                <div *ngIf=" validoFormulario && f.coleccion.errors">
-                    <span class="text-danger" *ngIf="f.coleccion.error.required">Campo requerido</span>
+                <label class="mb-0 mt-3" for="editorialComic">Editorial:</label>
+                <input type="text" class="form-control" id="editorialComic" formControlName="editorial"
+                    [ngClass]="{ 'is-invalid' : submitted && f.editorial.errors }">
+                <div *ngIf="submitted && f.editorial.errors">
+                    <span class="text-info" *ngIf="f.editorial.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.editorial.errors.maxlength">El campo solo recibe 50
+                        caracteres.</span>
+                </div>
+            </div>
+            <div class="col-6">
+                <label class="mb-0 mt-3" for="coleccion">Colección:</label>
+                <input type="text" class="form-control" id="coleccion" formControlName="coleccion"
+                    [ngClass]="{ 'is-invalid' : submitted && f.coleccion.errors }">
+                <div *ngIf="submitted && f.coleccion.errors">
+                    <span class="text-info" *ngIf="f.coleccion.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.coleccion.errors.maxlength">El campo solo recibe 50
+                        caracteres.</span>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-6">
-                <label for="numeroPaginas">Numero de paginas:</label>
-                <input id="numeroPaginas" type="number" class="form-control"  
-                formControlName="numeroPaginas" [ngClass]="{ 'is-invalid' : validoFormulario && f.numeroPaginas.errors }">
-                <div *ngIf=" validoFormulario && f.numeroPaginas.errors">
-                    <span class="text-danger" *ngIf="f.numeroPaginas.error.required">Campo requerido</span>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <label for="precio">Precio:</label>
-                <input id="precio" type="number" class="form-control" 
-                formControlName="precio" [ngClass]="{ 'is-invalid' : validoFormulario && f.precio.errors }">
-                <div *ngIf=" validoFormulario && f.precio.errors">
-                    <span class="text-danger" *ngIf="f.precio.error.required">Campo requerido</span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-6">
-                <label for="autores">Autores:</label>
-                <textarea class="form-control" id="autores" rows="3" formControlName="autores" ></textarea>
-            </div>
-
-            <div class="col-6">
-                <label for="color">A color:</label>
-                <br>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline1" formControlName="color" [value]="true" class="custom-control-input"
-                        [(ngModel)]="comicDTO.color">
-                    <label class="custom-control-label" for="customRadioInline1">Si</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline2" formControlName="color" [value]="false" class="custom-control-input"
-                        [(ngModel)]="comicDTO.color">
-                    <label class="custom-control-label" for="customRadioInline2">No</label>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-6">
-                <span></span>
-            </div>
-            <div class="col-6 text-right ">
-                <button type="button" class="btn btn-primary" (click)="crearComic()">Crear</button>
-            </div>
-        </div>
-        <br>
-
-        <div class="row" *ngIf="listaComics.length > 0">
             <div class="col-12">
-                <table class="table table-bordered border-primary">
-                    <thead>
+                <label class="mb-0 mt-3" for="autores">Autores:</label>
+                <textarea class="form-control" id="autores" rows="3" formControlName="autores"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <label class="mb-0 mt-3" for="numeroPaginas">Páginas:</label>
+                <input type="number" class="form-control" id="numeroPaginas" formControlName="numeroPaginas"
+                    [ngClass]="{ 'is-invalid' : submitted && f.numeroPaginas.errors }">
+                <div *ngIf="submitted && f.numeroPaginas.errors">
+                    <span class="text-info" *ngIf="f.numeroPaginas.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.numeroPaginas.errors.maxlength">El campo solo recibe 50
+                        caracteres.</span>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <label class="mb-0 mt-3" for="precio">Precio:</label>
+                <input type="number" class="form-control" id="precio" step=".01" formControlName="precio"
+                    [ngClass]="{ 'is-invalid' : submitted && f.precio.errors }">
+                <div *ngIf="submitted && f.precio.errors">
+                    <span class="text-info" *ngIf="f.precio.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.precio.errors.maxlength">El campo solo recibe 50
+                        caracteres.</span>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <label class="mb-0 mt-3 form-label" for="cantidadComic">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidadComic" formControlName="cantidad"
+                    [ngClass]="{ 'is-invalid' : submitted && f.cantidad.errors }">
+                <div *ngIf="submitted && f.cantidad.errors">
+                    <span class="text-info" *ngIf="f.cantidad.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.cantidad.errors.maxlength">El campo solo recibe 5
+                        caracteres.</span>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <label class="mb-0 mt-3" for="color">A color:</label>
+                <div class="col-12 mt-1 row">
+                    <div class="form-check form-check-inline col-6 m-0">
+                        <input type="radio" id="customRadioInline1" [value]="true" name="color" class="form-check-input"
+                            formControlName="color">
+                        <label class="form-check-label text-black" for="customRadioInline1">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline col-6 m-0">
+                        <input type="radio" id="customRadioInline2" [value]="false" name="color"
+                            class="form-check-input" formControlName="color">
+                        <label class="form-check-label text-black" for="customRadioInline2">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="" class="position-relative">
+        <div class="row g-0 mt-3">
+            <div class="col-12 mt-3">
+                <table class="align-middle  table-light">
+                    <thead class="table">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Tematica</th>
-                            <th scope="col">Precio</th>
+                            <th scope="col">Temática</th>
                             <th scope="col">A color</th>
-                            <th scope="col">Acciones</th>
+                            <th class="text-center" scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!--date:"MM/dd/yy"
-                        | uppercase-->
                         <tr *ngFor="let comic of listaComics;let i=index;">
-                            <th scope="row">{{i}}</th>
-                            <td>{{comic.nombre | uppercase }}</td>
-                            <td>{{comic.tematicaEnum | lowercase }}</td>
-                            <td>{{comic.precio | number: '.2'}}</td>
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{comic.nombre }}</td>
+                            <td>{{comic.tematicaEnum | uppercase }}</td>
                             <td>{{comic.color ? 'Si' : 'No' }}</td>
-                            <!-- <td>{{comic.fechaVenta | date: "MM-dd-yy" }}</td> -->
                             <td>
-                                <i class="fas fa-search 2x ml-1" title="Consultar" (click)="imprimirDataComic(i)"></i>
-                                <i class="fas fa-pencil-alt 2x ml-1"  title="Editar"></i>
-                                <i class="far fa-times-circle 2x ml-1" title="Eliminar"(click)="EliminarDataComic(i)"></i>
+                                <div class=" justify-content-around">
+                                    <i class="5x fa-search fas ml-1 px-1 text-dark"
+                                        (click)="imprimirInfoComic(comic)" data-content="Quieres Consultar"title="Consultar"></i>
+                                    <i class="5x fa-pencil-alt fas ml-1 px-1 text-dark" (click)="abrirForm(i)" data-content="Quieres Editar?"
+                                        title="Editar"></i>
+                                    <i class="5x fa-times-circle far ml-1 px-1 text-dark"
+                                        (click)="eliminarComic(comic.id)" title="Eliminar"></i>
+                                    <i class="5x fa-dollar-sign fas ml-1 px-1 text-dark"
+                                    [routerLink]="['/gestionar-compra-comic-component', comic]" title="Comprar"></i>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div *ngIf="mostrarItem" class="alert-message success fade show" data-alert="alert" style="top:3">
-            Se ha creado exitosamente el comic
-            <i class="far fa-times-circle 2x ml-1" title="Eliminar"(click)="cerrar()"></i>
-        </div>
-        <div *ngIf="eliminadoItem" class="alert-message success fade show" data-alert="alert" style="top:3">
-            Se ha creado eliminado el comic
-            <i class="far fa-times-circle 2x ml-1" title="Eliminar"(click)="cerrar()"></i>     
-        </div>
-
+                <div *ngIf="mostrarItem" >
+                    <div class="alert alert-primary" role="alert">
+                        
+                        <table class="my-5 table table-light table-hover">
+                            <tr class="lh-2">
+                                <th class="p-2">Nombre:</th>
+                                <td class="p-2">{{comicDTOInfo.nombre}}</td>
+                                <th class="p-2">Editorial:</th>
+                                <td class="p-2">{{comicDTOInfo.editorial}}</td>
+                            </tr>
+                            <tr class="lh-2">
+                                <th class="p-2">Colección:</th>
+                                <td class="p-2">{{comicDTOInfo.coleccion}}</td>
+                                <th class="p-2">Autores:</th>
+                                <td class="p-2">{{comicDTOInfo.autores}}</td>
+                                <th class="p-2">Páginas:</th>
+                                <td class="p-2">{{comicDTOInfo.numeroPaginas}}</td>
+                            </tr>
+                            <tr class="lh-2">
+                                <th class="p-3">A color:</th>
+                                <td class="p-3">{{comicDTOInfo.color ? 'Si' : 'No'}}</td>
+                                <th class="p-3">Estado:</th>
+                                <td class="p-3">{{comicDTOInfo.estadoEnum}}</td>
+                                <th class="p-3">Cantidad:</th>
+                                <td class="p-3">{{comicDTOInfo.cantidad}}</td>
+                                <th class="p-3">Precio:</th>
+                                <td class="p-3">$ {{comicDTOInfo.precio | number: '.2' }}</td>
+                            </tr>
+                        </table>
+                        <hr>
         
-
-        <div *ngIf="mostrarData"  style="z-index: 1; background: rgba(255, 255, 255, 0.6);">
-            <div class="alert alert-dark" role="alert">
-                <h5 >ITEM SELECCIONADO</h5>
-                <hr>
-                <table class="table table-bordered border-primary my-4">
-                    <tr class="lh-1">
-                        <th class="p-2">Nombre:</th>
-                        <td class="p-2">{{comicDTOData.nombre}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Temática:</th>
-                        <td class="p-2">{{comicDTOData.tematicaEnum}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Editorial:</th>
-                        <td class="p-2">{{comicDTOData.editorial}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Colección:</th>
-                        <td class="p-2">{{comicDTOData.coleccion}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Autores:</th>
-                        <td class="p-2">{{comicDTOData.autores}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Páginas:</th>
-                        <td class="p-2">{{comicDTOData.numeroPaginas}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">A color:</th>
-                        <td class="p-2">{{comicDTOData.color ? 'Si' : 'No'}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Estado:</th>
-                        <td class="p-2">{{comicDTOData.estadoEnum}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Cantidad:</th>
-                        <td class="p-2">{{comicDTOData.cantidad}}</td>
-                    </tr>
-                    <tr class="lh-1">
-                        <th class="p-2">Precio:</th>
-                        <td class="p-2">$ {{comicDTOData.precio | number: '.2' }}</td>
-                    </tr>
-                </table>
-                <hr>
-                <!-- <pre>{{ comicDTOData | json }}</pre> -->
-                <button type="button" class="border-0 btn btn-dark float-end shadow-sm" (click)="cerrar()">Cerrar</button>
+                        <button type="button" class="btn btn-dark "
+                            (click)="cerrar()">Cerrar</button>
+                    </div>
+                </div>
             </div>
-        </div>
-
+        </div>        
     </form>
 </div>

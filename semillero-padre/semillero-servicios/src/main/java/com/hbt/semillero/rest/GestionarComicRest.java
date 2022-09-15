@@ -4,7 +4,6 @@
 package com.hbt.semillero.rest;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -101,30 +100,7 @@ public class GestionarComicRest {
 		return comicDTOResult;
 	}
 
-	/**
-	 * Metodo encargado de <b>Caso de Uso</b>Semillero 2022
-	 * 
-	 * @author Usuario Miguel Castaño
-	 * @GET Metodo para Consultar lista de Comic por parametro Buscador que es de
-	 *      Tipo String
-	 * @Path("/listarComics")
-	 * @Produces(MediaType.APPLICATION_JSON) 
-	 * @param Buscador
-	 * @return
-	 */
-	@GET
-	@Path("/listarComics")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<ComicDTO> listarComics(@QueryParam("Buscador") String Buscador) {
-		List<ComicDTO> listaComic = new ArrayList<>();
-		try {
-			listaComic = this.gestionarComicLocal.listarComics(Buscador);
-		} catch (Exception e) {
-
-			System.out.println("Se ha presentado un error tecnico, causa: " + e.getMessage());
-		}
-		return listaComic;
-	}
+	
 
 	/**
 	 * 
@@ -236,6 +212,23 @@ public class GestionarComicRest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResultadoDTO actualizarCantidadComic(DatosActualizarCantidadDTO datosActualizarCantidad) {
 		return this.gestionarComicLocal.actualizarCantidadComic(datosActualizarCantidad);
+	}
+	/**
+	 * Metodo encargado de <b>Caso de Uso</b>Semillero 2022
+	 * 
+	 * @author Diego Alvarez Modificado Miguel Castaño
+	 * @GET Metodo para Obtener Todos Comic 
+	 * @Path("/obtenerComics")
+	 * @Produces(MediaType.APPLICATION_JSON) 
+	 *  @return
+	 */
+	
+	@GET
+	@Path("/obtenerComics")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ComicDTO> obtenerComics() {
+		return this.gestionarComicLocal.obtenerComics();
 	}
 
 }

@@ -3,8 +3,9 @@ package com.hbt.semillero.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.ejb.Stateless;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.Query;
 import javax.ejb.TransactionManagementType;
@@ -36,7 +37,7 @@ import com.hbt.semillero.interfaces.IGestionarComicLocal;
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class GestionarComicBean implements IGestionarComicLocal {
-	final static Logger logger = Logger.getLogger(GestionarComicBean.class);
+	
 	/**
 	 * PersistenceContext el EntityManager este será capaz de controlar todos los
 	 * cambios que se han realizado en él y ejecutar las consultas adecuadas contra
@@ -61,7 +62,7 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public ComicDTO crearComic(ComicDTO comicDTO) throws Exception {
-		logger.info("Se inicio El metodo Crear Comic");
+		
 		// Primero Validamos la existencia del Atributo Nombre COmicDTO
 		if (comicDTO.getNombre() == null) {
 			// Retorna una excepción
@@ -97,7 +98,7 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public ComicDTO actualizarComic(ComicDTO comicDTO) {
-		logger.info("Se inicio El metodo Actualizar Comic");
+		
 		// Creamos un constructor apartir de ComiDTO para actualizar informacion
 		ComicDTO comicDTOResult = new ComicDTO();
 		// Convertimos el objeto comicDTO a la entidad Comic Pero el metodo al final del
@@ -117,50 +118,6 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		return comicDTOResult;
 
 	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public List<ComicDTO> listarComics(String Buscador) {
-		logger.info("Se inicio El metodo Obtener Lista Comic");
-		// Creamos un constructor Tipo lista apartir de ComiDTO para actualizar
-		// informacion
-		List<ComicDTO> listaComicDTO = new ArrayList<>();
-		/**
-		 * Consulta Nativa para Mostrar la lista de Comic Use una intercalación que no
-		 * distinga entre mayúsculas y minúsculas en su tabla, o fuerce los valores en
-		 * minúsculas, por ejemplo WHERE lower(column) LIKE lower('%value%');
-		 * 
-		 * El toUpperCase() método devuelve el valor convertido en mayúsculas de 
-		 * la cadena que realiza la llamada cadena.toUpperCase() 
-		 * 
-		 */
-
-		String ConsultaMostrar = "SELECT cm FROM Comic cm WHERE LOWER(cm.nombre) LIKE :Nombre "
-				+ "OR LOWER(cm.editorial) LIKE :Editorial OR LOWER(c.coleccion) LIKE :Coleccion "
-				+ "OR LOWER(cm.autores) LIKE :Autores OR cm.tematicaEnum = com.hbt.semillero.enums.TematicaEnum."
-				+ Buscador.toUpperCase();
-		logger.info("Se crea la consulta ");
-		Query QueryListar = em.createQuery(ConsultaMostrar);
-		QueryListar.setParameter("Nombre", "%" + Buscador.toLowerCase() + "%");
-		QueryListar.setParameter("Editorial", "%" + Buscador.toLowerCase() + "%");
-		QueryListar.setParameter("Coleccion", "%" + Buscador.toLowerCase() + "%");
-		QueryListar.setParameter("Autores", "%" + Buscador.toLowerCase() + "%");
-		// Tenemos una lista de Comic donde vamos ha guardar QueryListar
-		@SuppressWarnings("unchecked")
-		List<Comic> listaresultado = QueryListar.getResultList();
-		// Recoremos los Comic con ciclo Forech para mostar todo y un mensaje de exitoso
-		for (Comic comic : listaresultado) {
-			// Convertimos el objeto comicDTO a la entidad Comic Pero el metodo al final del
-			// codigo
-			ComicDTO comicDTO = convertirComicToComicDTO(comic);
-			comicDTO.setExitoso(true);
-			comicDTO.setMensajeEjecucion("Consulta exitosa de comics");
-			listaComicDTO.add(comicDTO);
-		}
-		logger.debug("Se Finaliza Proceso de Mostar o Obtener comic");
-		return listaComicDTO;
-	}
-
 	@Override
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public ComicDTO consultarComic(Long idComic) {
@@ -186,7 +143,7 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public ResultadoDTO eliminarComic(Long idComic) {
-		logger.info("Se Inicia el Proceso de Eliminar Comic ");
+		
 		ResultadoDTO resultadoDTO = new ResultadoDTO();
 		/**
 		 * La llamada a find puede devolver dos posibles excepciones de tiempo de ejecución, 
@@ -195,7 +152,7 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		 * argumento no contiene una clase entidad o el segundo no es el tipo correcto de 
 		 * la clave primaria de la entidad.
 		 */
-		logger.info("Se crea la consulta generica tipo Find");
+		
 		Comic comic = em.find(Comic.class, idComic);
 		/**
 		 * En su forma más simple, el borrado de una entidad se realiza pasando la entidad 
@@ -210,7 +167,7 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		resultadoDTO.setExitoso(true);
 		//Mensaje si se relizo la Consulta DB
 		resultadoDTO.setMensajeEjecucion("Comic eliminado ");
-		logger.debug("Se termina el proceso ");
+		
 		return resultadoDTO;
 	}
 
@@ -368,7 +325,7 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	}
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	private boolean existeComic(Long idComic) {
-		logger.info("Se determina la existencia del Comic");
+		
 		boolean resultado = false;
 		Comic comic = null;
 		try {
@@ -431,4 +388,37 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		return comicDTO;
 	}
 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public List<ComicDTO> obtenerComics() {
+		List<Comic> comicsDB = new ArrayList<>();
+		List<ComicDTO> comics = new ArrayList<>();
+		String consultaComics = "SELECT c FROM Comic c";
+		try {
+			Query queryConsultaComics = em.createQuery(consultaComics);
+			comicsDB = queryConsultaComics.getResultList();
+			if(comicsDB.isEmpty()) {
+				ComicDTO dto = new ComicDTO();
+				dto.setExitoso(Boolean.FALSE);
+				dto.setMensajeEjecucion("No existen comics");
+				comics.add(dto);
+				return comics;
+			}
+			
+			for (Comic comic : comicsDB) {
+				comics.add(this.convertirComicToComicDTO(comic));
+			}
+			comics.get(0).setExitoso(Boolean.TRUE);
+			comics.get(0).setMensajeEjecucion("Se ha ejecutado exitosamente");
+		} catch (Exception e) {
+			ComicDTO dto = new ComicDTO();
+			dto.setExitoso(Boolean.FALSE);
+			dto.setMensajeEjecucion("Se ha presentado un error tecnico");
+			comics.add(dto);
+			
+		}
+		return comics;
+	}
 }

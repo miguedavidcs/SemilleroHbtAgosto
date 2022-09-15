@@ -1,0 +1,34 @@
+<div class="container">
+     <form [formGroup]="gestionarComicForm">
+        <h1>Gestionar Comic</h1>
+        <hr>        
+        <div class="row">
+            <div class="col-3">
+                <div *ngIf="mostrarItem" class="alert alert-danger" role="alert">    
+                     <pre>{{ mensajeEjecucion | json }}</pre> 
+                    <button type="button" class="btn btn-danger" (click)="cerrar()">Cerrar</button> 
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label for="nombreComic"><h1>Nombre:</h1><h1>{{ comicDTO.nombre }}</h1></label>
+            </div>
+            <div class="col-3">
+                <label for="cantidadComic"><h1>Cantidad :</h1></label>
+                <input type="text" class="form-control" id="cantidad" maxlength="50" formControlName="cantidad"
+                    [ngClass]="{ 'is-invalid' :  submitted && f.cantidad.errors }">
+                <div *ngIf="submitted && f.cantidad.errors">
+                    <span class="text-danger" *ngIf="f.cantidad.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.cantidad.errors.maxlength">El campo solo recibe 50 caracteres.</span>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-drak" (click)="comprarComic()">Comprar</button>    
+                    <button type="button" class="btn btn-ligth" [routerLink]="['/gestionar-comic']">Cancelar</button> 
+                </div>
+            </div>
+        </div>
+        
+    </form>
+</div>

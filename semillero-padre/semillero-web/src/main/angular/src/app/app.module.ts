@@ -11,6 +11,7 @@ import { CrearPersonaComponent } from './semillero/componentes/crear-persona/cre
 import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component';
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
 import { GestionarComicComponent } from './semillero/componentes/gestionar-comic/gestionar-comic.component';
+import { GestionarCompraComicComponent } from './semillero/componentes/gestionar-compra-comic-component/gestionar-compra-comic-component.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { GestionarComicComponent } from './semillero/componentes/gestionar-comic
     BienvenidaComponent,
     CrearPersonaComponent,
     GestionarComicComponent,
+    GestionarCompraComicComponent,
     
   ],
   imports: [
